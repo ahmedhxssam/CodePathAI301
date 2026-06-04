@@ -11,3 +11,9 @@ This issue fits my AI and Cybersecurity interests because it involves TLS inspec
 ## Current status
 
 I reviewed the issue requirements and the repository’s contributing guidelines. I commented on the GitHub issue and am waiting for a maintainer vouch before opening a PR.
+
+## About the Contributor
+
+Hi! My name is Ahmed Mohamed, I'm an IT student at George Mason University (Fairfax, VA) with a double-concentration in AI and cybersecurity. This repository documents my CodePath AI301 Open-Source Capstone class contribution process.
+
+For additional background info, see my [resume](docs/Ahmed_Mohamed_Resume.pdf).
