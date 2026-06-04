@@ -1,4 +1,4 @@
-# ai301codepath
+# CodePathAI301
 
 ## Selected Issue
 
