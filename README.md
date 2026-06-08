@@ -2,7 +2,7 @@
 
 ## Selected Issue
 
-I selected Issue #165 from GRCEngClub/claude-grc-engineering: “Add STARTTLS protocol support to testssl-inspector.”
+I selected Issue #165 from [GRCEngClub/claude-grc-engineering: “Add STARTTLS protocol support to testssl-inspector.”]([url](https://github.com/GRCEngClub/claude-grc-engineering/issues/165))
 
 ## Why I selected it
 
