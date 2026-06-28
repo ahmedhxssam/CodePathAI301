@@ -175,7 +175,7 @@ The implementation modified three files:
 - `plugins/connectors/testssl-inspector/commands/scan.md`
 - `plugins/connectors/testssl-inspector/README.md`
 
-The final diff summary was:
+At the end of my initial implementation, the diff summary was:
 
 ```text
 3 files changed, 72 insertions(+), 15 deletions(-)
@@ -268,4 +268,60 @@ These checks confirm that the new flag is accepted, invalid protocols fail with 
 | Working branch link | Complete | https://github.com/ahmedhxssam/claude-grc-engineering/tree/fix-165-starttls-testssl |
 | Solution plan | Complete | This README |
 | Pull request | Open | https://github.com/GRCEngClub/claude-grc-engineering/pull/197 |
-| Phase II check-in | Pending catch-up | CodePath AI301 portal, to be submitted after Week 4
+| Phase II check-in | Pending catch-up | CodePath AI301 portal, to be submitted after Week 4 |
+
+## Phase IV: Submit & Iterate
+
+### Pull Request
+
+- **PR Link:** https://github.com/GRCEngClub/claude-grc-engineering/pull/197
+- **Status:** Awaiting maintainer review / Iterating
+- **Related Issue:** Closes #165, Add STARTTLS protocol support to testssl-inspector
+
+### Contribution Summary
+
+I submitted PR #197 to add `--starttls=<proto>` support to the `testssl-inspector` connector.
+
+The contribution adds support for valid STARTTLS protocols, validates unsupported protocol values, applies protocol-specific default ports when a target does not provide one, preserves explicit ports such as SMTP port 587, and passes the `--starttls` option through to `testssl.sh`.
+
+I also updated the connector documentation so users can understand the new flag, supported protocols, default-port behavior, and examples for both STARTTLS and implicit TLS services.
+
+### Acceptance Criteria and Verification
+
+* [x] Valid STARTTLS protocols are accepted and passed to `testssl.sh`.
+* [x] Unknown protocols return a clear error with exit code 2.
+* [x] Protocol-specific default ports are applied when no explicit port is provided.
+* [x] Explicit target ports remain unchanged.
+* [x] `commands/scan.md` and the connector README were updated.
+* [x] `node --check plugins/connectors/testssl-inspector/scripts/scan.js` passed.
+* [x] `bash tests/validate-contract-fixtures.sh` passed with all 49 fixtures valid.
+
+I also verified that `--starttls=smtp` is accepted by the wrapper and reaches the expected runner/tool-resolution stage. Because `testssl.sh` was not installed locally, the command stopped at tool resolution rather than completing a live scan. This still confirmed that the argument parsing and STARTTLS option plumbing were working.
+
+### Feedback and Next Steps
+
+The pull request is open and awaiting maintainer review. Automated reviewers have provided feedback, and I am reviewing the remaining comments against the latest implementation before making any additional targeted changes.
+
+My next steps are to:
+
+1. Verify whether each remaining automated review comment is still applicable.
+2. Make a small follow-up commit only where needed.
+3. Reply to feedback clearly and professionally.
+4. Request or follow up on maintainer review.
+5. Update this README when the PR receives a maintainer decision or additional requested changes.
+
+### Reflection
+
+This contribution helped me practice a real open-source workflow from issue selection through implementation, testing, documentation, pull request submission, and review feedback.
+
+The most valuable part was learning how to work within an unfamiliar codebase instead of building something from scratch. I had to understand the existing command-line parsing, runner behavior, documentation style, and validation patterns before making changes. I also learned that an open-source contribution does not need to be merged immediately to be meaningful. A clear pull request, solid verification, and professional iteration based on feedback are all part of the contribution process.
+
+### Phase IV Deliverables Summary
+
+| Deliverable                      | Status          | Link or Location                                              |
+| -------------------------------- | --------------- | ------------------------------------------------------------- |
+| Upstream pull request            | Complete        | https://github.com/GRCEngClub/claude-grc-engineering/pull/197 |
+| PR link and contribution summary | Complete        | This README                                                   |
+| Feedback and next-step notes     | Complete        | This README                                                   |
+| Phase IV check-in                | Ready to submit | CodePath AI301 portal                                         |
+
