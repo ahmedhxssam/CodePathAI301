@@ -131,7 +131,7 @@ echo $?
 Output:
 
 ```text
-[testssl-inspector] unknown STARTTLS protocol: bogus. Supported protocols: smtp, imap, pop3, ftp, ldap, postgres, mysql, smtps
+[testssl-inspector] unknown STARTTLS protocol: bogus. Supported protocols: smtp, imap, pop3, ftp, ldap, postgres, mysql
 2
 ```
 
@@ -254,7 +254,7 @@ echo $?
 Result:
 
 ```text
-[testssl-inspector] unknown STARTTLS protocol: bogus. Supported protocols: smtp, imap, pop3, ftp, ldap, postgres, mysql, smtps
+[testssl-inspector] unknown STARTTLS protocol: bogus. Supported protocols: smtp, imap, pop3, ftp, ldap, postgres, mysql
 2
 ```
 
@@ -275,7 +275,7 @@ These checks confirm that the new flag is accepted, invalid protocols fail with 
 ### Pull Request
 
 - **PR Link:** https://github.com/GRCEngClub/claude-grc-engineering/pull/197
-- **Status:** Awaiting maintainer review / Iterating
+- **Status:** Awaiting maintainer review
 - **Related Issue:** Closes #165, Add STARTTLS protocol support to testssl-inspector
 
 ### Contribution Summary
@@ -295,20 +295,38 @@ I also updated the connector documentation so users can understand the new flag,
 * [x] `commands/scan.md` and the connector README were updated.
 * [x] `node --check plugins/connectors/testssl-inspector/scripts/scan.js` passed.
 * [x] `bash tests/validate-contract-fixtures.sh` passed with all 49 fixtures valid.
+* [x] `node --test tests/testssl-inspector-starttls.test.mjs` passed with 6 passing tests.
+
+In the follow-up I also added a targeted STARTTLS test suite covering protocol allowlisting, default ports, explicit-port preservation, bracketed IPv6 handling, Docker/non-Docker runner parity, and findings normalization:
+
+```bash
+node --test tests/testssl-inspector-starttls.test.mjs
+```
+
+Result:
+
+```text
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+```
 
 I also verified that `--starttls=smtp` is accepted by the wrapper and reaches the expected runner/tool-resolution stage. Because `testssl.sh` was not installed locally, the command stopped at tool resolution rather than completing a live scan. This still confirmed that the argument parsing and STARTTLS option plumbing were working.
 
 ### Feedback and Next Steps
 
-The pull request is open and awaiting maintainer review. Automated reviewers have provided feedback, and I am reviewing the remaining comments against the latest implementation before making any additional targeted changes.
+Automated review feedback was audited, and a focused follow-up was pushed in commit `e201220`. The pull request is now awaiting maintainer review.
+
+The follow-up removed a dead parameter, clarified the implicit-TLS handling for SMTPS on port 465, documented `metadata.effective_target`, and confirmed default-port, explicit-port-preservation, IPv6, runner-parity, and invalid-protocol behavior via the targeted test suite.
 
 My next steps are to:
 
-1. Verify whether each remaining automated review comment is still applicable.
-2. Make a small follow-up commit only where needed.
-3. Reply to feedback clearly and professionally.
-4. Request or follow up on maintainer review.
-5. Update this README when the PR receives a maintainer decision or additional requested changes.
+1. Respond to any further maintainer feedback on PR #197.
+2. Update this README when the PR receives a maintainer decision or additional requested changes.
 
 ### Reflection
 
