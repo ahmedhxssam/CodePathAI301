@@ -268,4 +268,4 @@ These checks confirm that the new flag is accepted, invalid protocols fail with 
 | Working branch link | Complete | https://github.com/ahmedhxssam/claude-grc-engineering/tree/fix-165-starttls-testssl |
 | Solution plan | Complete | This README |
 | Pull request | Open | https://github.com/GRCEngClub/claude-grc-engineering/pull/197 |
-| Phase II check-in | Ready to submit | CodePath AI301 portal |
+| Phase II check-in | Pending catch-up | CodePath AI301 portal, to be submitted after Week 4
