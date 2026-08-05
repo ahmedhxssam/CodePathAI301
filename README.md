@@ -23,9 +23,11 @@ The issue was also a good fit for my CodePath AI301 Open Source Capstone because
 
 ## Current Status
 
-I was vouched by the maintainer for Issue #165 and opened PR #197.
+I was vouched by the maintainer for Issue #165 and opened PR #197. The pull request is mergeable and awaiting maintainer review.
 
 The pull request adds STARTTLS support to the `testssl-inspector` connector by parsing `--starttls=<proto>`, validating supported protocols, applying protocol-specific default ports, preserving explicit ports, passing `--starttls <proto>` through to `testssl.sh`, and updating the related documentation.
+
+As of August 5, I merged the upstream `main` branch into my working branch to keep the PR mergeable and simplify the eventual merge. Greptile re-reviewed the branch successfully. The PR is now blocked only on code-owner review from the GRCEngClub leadership team, with four upstream workflows awaiting maintainer approval.
 
 ## Phase II: Reproduce and Plan
 
@@ -319,14 +321,15 @@ I also verified that `--starttls=smtp` is accepted by the wrapper and reaches th
 
 ### Feedback and Next Steps
 
-Automated review feedback was audited, and a focused follow-up was pushed in commit `e201220`. The pull request is now awaiting maintainer review.
+Automated review feedback was audited across CodeRabbit, Qodo, and Greptile, and focused follow-ups were pushed. The June 28 follow-up (commit `e201220`) removed a dead parameter, clarified the implicit-TLS handling for SMTPS on port 465, documented `metadata.effective_target`, and confirmed default-port, explicit-port-preservation, IPv6, runner-parity, and invalid-protocol behavior via the targeted test suite.
 
-The follow-up removed a dead parameter, clarified the implicit-TLS handling for SMTPS on port 465, documented `metadata.effective_target`, and confirmed default-port, explicit-port-preservation, IPv6, runner-parity, and invalid-protocol behavior via the targeted test suite.
+On July 15 I followed up with the maintainer to request workflow approval and review. On August 5 I merged upstream `main` into my branch to keep it mergeable; Greptile re-reviewed successfully.
 
 My next steps are to:
 
-1. Respond to any further maintainer feedback on PR #197.
-2. Update this README when the PR receives a maintainer decision or additional requested changes.
+1. Wait for the maintainer to approve the pending workflows and complete code-owner review on PR #197.
+2. Respond to any further maintainer feedback.
+3. Update this README when the PR receives a maintainer decision or additional requested changes.
 
 ### Reflection
 
